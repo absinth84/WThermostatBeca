@@ -2158,7 +2158,10 @@ private:
 				} else if (this->systemMode->equalsString(SYSTEM_MODE_FAN)){
 					this->mode->setString(MODE_FAN);
 				} else {
-					// BUG
+					// Handle unknown mode: set COOL as default
+					network->log()->warning(F("updateModeAndAction: Unknown system mode, defaulting to COOL"));
+					this->systemMode->setString(SYSTEM_MODE_COOL);
+					this->mode->setString(MODE_COOL);
 				}
 			}
 		}
